@@ -4,14 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var lessMiddleware = require('less-middleware');
 var logger = require('morgan');
-var redis = require('redis');
-
-var client = redis.createClient({
-    host: 'redis'
-});
-client.on('connect', function () {
-    console.log("Connected to Redis...");
-});
 
 var indexRouter = require('./routes/index');
 var citiesRouter = require('./routes/cities');
