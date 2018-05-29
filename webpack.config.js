@@ -1,23 +1,30 @@
-const webpack = require('webpack');
+const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
 
-module.exports = {
-    entry: {
-        vendor: [
-            'jquery',
-        ],
-        app: './src/app-front-end.js'
-    },
+const conf = {
+    entry: './src/index.js',
     output: {
-        path: `${__dirname}/website/static/js/build/`,
-        filename: '[name].bundle.js'
+        path: path.resolve(__dirname, "public"),
+        filename: "javascripts/main.js",
+        publicPath: "dev/"
+    },
+    devServer: {
+        port: 3001
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                loader: "babel-loader",
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             },
             {
                 test: /\.less$/,
@@ -25,30 +32,22 @@ module.exports = {
                     fallback: 'style-loader',
                     use: ['css-loader', 'less-loader']
                 })
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
             }
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.bundle.js'}),
+        new ExtractTextPlugin({
+            filename: "stylesheets/front/front-styles.less"
+        }),
         new webpack.ProvidePlugin({
-            'window.jQuery': 'jquery',
             $: 'jquery',
             jQuery: 'jquery'
-        }),
-        new ExtractTextPlugin("styles.css")
-    ],
-    devServer: {
-        host: "0.0.0.0",
-        port: 3002,
-        headers: {
-            "Cache-Control": "no-cache, no-store, must-revalidate",
-            "Pragma": "no-cache",
-            "Expires": "0s"
-        },
-        disableHostCheck: true
-    }
+        })
+    ]
+};
+module.exports = (env, options) => {
+    let production = options.mode === 'production';
+
+    conf.devtool = production ? 'source-map' : 'eval-sourcemap';
+    return conf;
 };

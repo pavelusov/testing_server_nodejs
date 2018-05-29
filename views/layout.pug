@@ -2,6 +2,18 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    - var prod = !NODE_ENV_DEV
+    - var pathFiles =  "http://localhost:3001/dev";
+    if prod
+      link(rel='stylesheet', href='/stylesheets/style.css')
+    else
+      link(rel='stylesheet', href= pathFiles + '/stylesheets/front/front-styles.less')
   body
     block content
+  footer
+    block footer
+    if prod
+      script(src='/javascripts/main.js')
+    else
+      script(src=pathFiles + '/javascripts/main.js')
+

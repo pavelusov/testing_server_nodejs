@@ -1,17 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var lessMiddleware = require('less-middleware');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const lessMiddleware = require('less-middleware');
+const logger = require('morgan');
 
-var mongo = require('mongodb');
-
+const mongo = require('mongodb');
 
 var indexRouter = require('./routes/index');
 var citiesRouter = require('./routes/cities');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
