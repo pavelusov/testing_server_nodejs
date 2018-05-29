@@ -1,6 +1,7 @@
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
+const devMode = process.env.NODE_ENV !== 'production';
 
 const conf = {
     entry: './src/index.js',
@@ -21,29 +22,51 @@ const conf = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ]
             },
             {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'less-loader']
-                })
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "less-loader"
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                            outputPath: 'images/'
+                        }
+                    }
+                ]
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: "stylesheets/front/front-styles.less"
+        new MiniCssExtractPlugin({
+            filename: "stylesheets/front/front-styles.css"
         }),
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
+            $: "jquery",
+            jQuery: "jquery"
         })
-    ]
+    ],
+    resolve: {
+        modules: [
+            "node_modules"
+        ],
+        alias: {
+            // "jquery-ui": "jquery-ui/jquery-ui.js",
+            modules: path.join(__dirname, "node_modules"),
+        },
+    }
 };
 module.exports = (env, options) => {
     let production = options.mode === 'production';
