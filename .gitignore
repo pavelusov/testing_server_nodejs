@@ -1,5 +1,3 @@
 .idea
 node_modules/
 test/
-data/journal/
-data/diagnostic.data/
