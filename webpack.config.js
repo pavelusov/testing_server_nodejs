@@ -42,7 +42,7 @@ const conf = {
                         loader: 'file-loader',
                         options: {
                             name: '[path][name].[ext]',
-                            outputPath: 'images/'
+                            outputPath: 'images/build/'
                         }
                     }
                 ]
@@ -63,7 +63,6 @@ const conf = {
             "node_modules"
         ],
         alias: {
-            // "jquery-ui": "jquery-ui/jquery-ui.js",
             modules: path.join(__dirname, "node_modules"),
         },
     }
