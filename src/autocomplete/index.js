@@ -1,25 +1,7 @@
-import './styles.less';
-
-const inputElement = $('.citySearch');
-
-inputElement.autocomplete({
-    source: (req, res) => {
-        $.ajax( {
-            url: "cities",
-            type: "POST",
-            dataType: "json",
-            data: {
-                search: req.term
-            },
-            success: (data) => {
-                res($.map(data, city => {
-                    return {
-                        label: city.City,
-                        value: city.id
-                    }
-                }));
-            }
-        } );
-    },
-    minLength: 2
-});
+require('jquery-ui');
+require('jquery-ui/themes/base/core.css');
+require('jquery-ui/themes/base/theme.css');
+require('jquery-ui/themes/base/autocomplete.css');
+import 'jquery-ui/ui/widgets/autocomplete';
+import './styles/styles.less';
+import './search-box';

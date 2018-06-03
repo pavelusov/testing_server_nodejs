@@ -1,0 +1,19 @@
+@import "../../styles/variables";
+
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px 10px;
+    list-style: none;
+}
+
+.border(@color:#000, @radius:3px, @width:1px) {
+    border: @width solid @color;
+    border-radius: @radius;
+}
+
+.input() {
+    border: 1px solid @light-gray;
+    box-sizing: border-box;
+};

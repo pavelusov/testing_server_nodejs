@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  input(type="text" name="search" class="citySearch")
+  .wrapper-box
+    .search-box
+      label(for="city-search" class="label-search") Пойск города:
+      .wrapper_search-input
+        input(
+          type="text"
+          id="city-search"
+          name="search"
+          class="city-search"
+        )
+        .fas.fa-sort-down

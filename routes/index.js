@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Javascript', NODE_ENV_DEV: NODE_ENV_DEV});
+  res.render('index', { title: 'Combo-box', NODE_ENV_DEV: NODE_ENV_DEV});
 });
 
 module.exports = router;

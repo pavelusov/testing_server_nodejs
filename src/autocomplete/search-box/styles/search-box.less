@@ -1,0 +1,45 @@
+@import "basic";
+@import "../../styles/variables";
+
+.search-box {
+	width: 400px;
+	display: inline-block;
+	padding: 30px;
+	.border(@light-gray);
+	background: #fbf9f6;
+	@media @mobile {
+		width: 100%;
+		border: none;
+	}
+
+	.label-search {
+		display: block;
+		margin-bottom: 20px;
+	}
+	.wrapper_search-input {
+		position: relative;
+		.fas {
+			position: absolute;
+			top: 50%;
+			right: 0;
+			transform: translate(0, -50%);
+			width: 20px;
+			height: 24px;
+			display: block;
+			font-size: 1rem;
+			color: lighten(@gray, 25%);
+			&:before {
+
+			}
+		}
+		.city-search {
+			padding: 10px 25px 10px 10px;
+			width: 100%;
+			.input();
+			@media @mobile {
+				width: 100%;
+
+			}
+		}
+	}
+}
