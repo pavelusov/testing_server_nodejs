@@ -8,9 +8,10 @@ Test server with Nodejs, Express, MongoDB, Pug
 
 ## Build
 - docker-compose up --build -d (or docker-compose up -d)
+- npm run build
+- go http://localhost:3000/
 
 ## Development
--  docker-compose -f docker-compose.dev.yml up
+- docker-compose -f docker-compose.dev.yml up
 - npm run dev
-
-Go http://localhost:3000/ 
+- go http://localhost:3000/ 
