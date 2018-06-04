@@ -12,7 +12,9 @@ Test server with Nodejs, Express, MongoDB, Pug
 - docker ps                             // скопируйте CONTAINER_ID для image mongo, например 8fc663e38824
 - docker cp ./dump 8fc663e38824:/dump/  //скопируйте папку /dump/ в контейнер mongo
 - docker-compose exec mongo bash        // зайдем в контейнер mongo
-- mongorestore dump/mycities/           // востановить бд из дампа
+- mongorestore /dump/mycities/cities.bson            // востановить бд из дампа
+- npm run build
+- go http://localhost:3000/
 
 ## Build
 - cd testing_server_nodejs
